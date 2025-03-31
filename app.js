@@ -17,19 +17,14 @@ connectToDb();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(express.static(path.resolve(__dirname, "dist")));
+app.use(express.static(path.resolve(__dirname, "dist")));
 
 app.use(cookieParser());
 
 
-// app.get("*", (req, res) =>
-//     res.sendFile(path.resolve("dist", "index.html"))
-//   );
-  // Passport Local Strategy
-app.get('/', (req, res) => {
-    res.send('Hello World');
-});
-
+app.get("*", (req, res) =>
+    res.sendFile(path.resolve("dist", "index.html"))
+  );
 app.use('/users', userRoutes);
 app.use('/captains', captainRoutes);
 app.use('/maps', mapsRoutes);
